@@ -135,7 +135,7 @@ export default function NewEntry() {
       {message && <div className="ok" role="status">{message}</div>}
       <form className="panel" onSubmit={handleSubmit(() => { setMessage(""); setStep("preview"); })} noValidate>
         <section className="group">
-          <h2>Who and when</h2>
+          <h2>Details</h2>
           <div className="grid">
             {field("name", "Name", <input id="name" autoComplete="name" {...register("name")} />)}
             {field("officialEmail", "Official mail ID", <input id="officialEmail" type="email" autoComplete="email" {...register("officialEmail")} />)}
