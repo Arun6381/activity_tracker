@@ -21,10 +21,8 @@ export async function POST(req: NextRequest) {
 
   if (!admin || !ok) return NextResponse.json({ error: "Wrong email or password." }, { status: 401 });
 
-  const token = await signSession(admin.email);
-  // The token in the body is for the mobile app; the website uses the cookie below
-  const res = NextResponse.json({ ok: true, token });
-  res.cookies.set(SESSION_COOKIE, token, {
+  const res = NextResponse.json({ ok: true });
+  res.cookies.set(SESSION_COOKIE, await signSession(admin.email), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
